@@ -6,46 +6,93 @@ class App extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {employees: []};
+		this.state = {alumnos: [], cursos:[]};
 	}
 	componentDidMount() { 
-		client({method: 'GET', path: '/api/employees'}).done(response => {
-			this.setState({employees: response.entity._embedded.employees});
-		});
+		client({method: 'GET', path: '/api/alumnos'}).done(response => {
+			this.setState({alumnos: response.entity._embedded.alumnos});
+		}); 
+			client({method: 'GET', path: '/api/cursos'}).done(response => {
+				this.setState({cursos: response.entity._embedded.cursos});
+			});
+	
+
 	}
 	render() { 
 		return (
-			<EmployeeList employees={this.state.employees}/>
+			<>
+
+			<h2>Lista de Alumnos</h2>
+			<AlumnoList alumnos={this.state.alumnos}/>
+			<hr/>
+			<h2>Lista de Cursos</h2>
+			<CursoList cursos={this.state.cursos}/>
+
+			</>
 		)
 	}
 }
 
-class EmployeeList extends React.Component{
+
+   class AlumnoList  extends React.Component{
 	render() {
-		const employees = this.props.employees.map(employee =>
-			<Employee key={employee._links.self.href} employee={employee}/>
+		const alumnos = this.props.alumnos.map(alumno =>
+			<Alumno key={alumno._links.self.href} alumno={alumno}/>
 		);
 		return (
+		
 			<table>
+					
 				<tbody>
 					<tr>
-						<th>First Name</th>
-						<th>Last Name</th>
-						<th>Description</th>
+						<th>Nombre</th>
+						<th>Apellido</th>
+						<th>Turno</th>
 					</tr>
-					{employees}
+					{alumnos}
 				</tbody>
 			</table>
 		)
 	}
 }
-class Employee extends React.Component{
+
+class CursoList  extends React.Component{
+	render() {
+		const cursos = this.props.cursos.map(curso =>
+			<Curso key={curso._links.self.href} curso={curso}/>
+		);
+		return (
+		
+			<table>
+					
+				<tbody>
+					<tr>
+						<th>Nombre</th>
+					</tr>
+					{cursos}
+				</tbody>
+			</table>
+		)
+	}
+}
+class Alumno extends React.Component{
 	render() {
 		return (
 			<tr>
-				<td>{this.props.employee.firstName}</td>
-				<td>{this.props.employee.lastName}</td>
-				<td>{this.props.employee.description}</td>
+				<td>{this.props.alumno.nombre}</td>
+				<td>{this.props.alumno.apellido}</td>
+				<td>{this.props.alumno.turno}</td>
+			</tr>
+		)
+	}
+}
+
+class Curso extends React.Component{
+	render() {
+		return (
+			<tr>
+				<td>{this.props.curso.nombre}</td>
+			
 			</tr>
 		)
 	}

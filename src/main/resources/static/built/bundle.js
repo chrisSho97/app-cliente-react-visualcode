@@ -34105,7 +34105,8 @@ var App = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, App);
     _this = _super.call(this, props);
     _this.state = {
-      employees: []
+      alumnos: [],
+      cursos: []
     };
     return _this;
   }
@@ -34115,58 +34116,104 @@ var App = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
       client({
         method: 'GET',
-        path: '/api/employees'
+        path: '/api/alumnos'
       }).done(function (response) {
         _this2.setState({
-          employees: response.entity._embedded.employees
+          alumnos: response.entity._embedded.alumnos
+        });
+      });
+      client({
+        method: 'GET',
+        path: '/api/cursos'
+      }).done(function (response) {
+        _this2.setState({
+          cursos: response.entity._embedded.cursos
         });
       });
     }
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement(EmployeeList, {
-        employees: this.state.employees
-      });
+      return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h2", null, "Lista de Alumnos"), /*#__PURE__*/React.createElement(AlumnoList, {
+        alumnos: this.state.alumnos
+      }), /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement("h2", null, "Lista de Cursos"), /*#__PURE__*/React.createElement(CursoList, {
+        cursos: this.state.cursos
+      }));
     }
   }]);
   return App;
 }(React.Component);
-var EmployeeList = /*#__PURE__*/function (_React$Component2) {
-  _inherits(EmployeeList, _React$Component2);
-  var _super2 = _createSuper(EmployeeList);
-  function EmployeeList() {
-    _classCallCheck(this, EmployeeList);
+var AlumnoList = /*#__PURE__*/function (_React$Component2) {
+  _inherits(AlumnoList, _React$Component2);
+  var _super2 = _createSuper(AlumnoList);
+  function AlumnoList() {
+    _classCallCheck(this, AlumnoList);
     return _super2.apply(this, arguments);
   }
-  _createClass(EmployeeList, [{
+  _createClass(AlumnoList, [{
     key: "render",
     value: function render() {
-      var employees = this.props.employees.map(function (employee) {
-        return /*#__PURE__*/React.createElement(Employee, {
-          key: employee._links.self.href,
-          employee: employee
+      var alumnos = this.props.alumnos.map(function (alumno) {
+        return /*#__PURE__*/React.createElement(Alumno, {
+          key: alumno._links.self.href,
+          alumno: alumno
         });
       });
-      return /*#__PURE__*/React.createElement("table", null, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "First Name"), /*#__PURE__*/React.createElement("th", null, "Last Name"), /*#__PURE__*/React.createElement("th", null, "Description")), employees));
+      return /*#__PURE__*/React.createElement("table", null, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("th", null, "Apellido"), /*#__PURE__*/React.createElement("th", null, "Turno")), alumnos));
     }
   }]);
-  return EmployeeList;
+  return AlumnoList;
 }(React.Component);
-var Employee = /*#__PURE__*/function (_React$Component3) {
-  _inherits(Employee, _React$Component3);
-  var _super3 = _createSuper(Employee);
-  function Employee() {
-    _classCallCheck(this, Employee);
+var CursoList = /*#__PURE__*/function (_React$Component3) {
+  _inherits(CursoList, _React$Component3);
+  var _super3 = _createSuper(CursoList);
+  function CursoList() {
+    _classCallCheck(this, CursoList);
     return _super3.apply(this, arguments);
   }
-  _createClass(Employee, [{
+  _createClass(CursoList, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, this.props.employee.firstName), /*#__PURE__*/React.createElement("td", null, this.props.employee.lastName), /*#__PURE__*/React.createElement("td", null, this.props.employee.description));
+      var cursos = this.props.cursos.map(function (curso) {
+        return /*#__PURE__*/React.createElement(Curso, {
+          key: curso._links.self.href,
+          curso: curso
+        });
+      });
+      return /*#__PURE__*/React.createElement("table", null, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre")), cursos));
     }
   }]);
-  return Employee;
+  return CursoList;
+}(React.Component);
+var Alumno = /*#__PURE__*/function (_React$Component4) {
+  _inherits(Alumno, _React$Component4);
+  var _super4 = _createSuper(Alumno);
+  function Alumno() {
+    _classCallCheck(this, Alumno);
+    return _super4.apply(this, arguments);
+  }
+  _createClass(Alumno, [{
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, this.props.alumno.nombre), /*#__PURE__*/React.createElement("td", null, this.props.alumno.apellido), /*#__PURE__*/React.createElement("td", null, this.props.alumno.turno));
+    }
+  }]);
+  return Alumno;
+}(React.Component);
+var Curso = /*#__PURE__*/function (_React$Component5) {
+  _inherits(Curso, _React$Component5);
+  var _super5 = _createSuper(Curso);
+  function Curso() {
+    _classCallCheck(this, Curso);
+    return _super5.apply(this, arguments);
+  }
+  _createClass(Curso, [{
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, this.props.curso.nombre));
+    }
+  }]);
+  return Curso;
 }(React.Component);
 ReactDOM.render( /*#__PURE__*/React.createElement(App, null), document.getElementById('react'));
 
