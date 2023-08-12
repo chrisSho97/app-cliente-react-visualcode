@@ -11,7 +11,7 @@ const NuevoCursoPage = () => {
                  method: 'POST',
                  path : '/api/cursos',
                  entity: {nombre: nombre},
-                 headers:{'content-type': 'application/json'}    
+                 headers:{'content-type': 'application/json'}       
             }).done(()=>{
                     window.location = '/'; 
 
