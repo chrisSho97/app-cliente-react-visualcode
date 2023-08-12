@@ -40956,7 +40956,7 @@ var HomePage = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Practia Visual Code (componente: HomePage)"), /*#__PURE__*/React.createElement(Titulo, {
+      return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Practica Visual Code (componente: HomePage)"), /*#__PURE__*/React.createElement(Titulo, {
         entidad: "Alumnos",
         emoji: "\uD83D\uDC68\u200D\uD83C\uDF93"
       }), /*#__PURE__*/React.createElement(AlumnoList, {
@@ -41180,13 +41180,13 @@ var NuevoCursoPage = function NuevoCursoPage() {
         nombre: nombre
       },
       headers: {
-        'content-type': 'application/json'
+        'Content-Type': 'application/json'
       }
     }).done(function () {
       window.location = '/';
     });
   };
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Nuevo Curso"), /*#__PURE__*/React.createElement(Form, {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Nuevo Curso"), /*#__PURE__*/React.createElement("form", {
     onSubmit: handleSubmit
   }, /*#__PURE__*/React.createElement("label", null, "Nombre"), " ", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
     type: "text",
@@ -41198,7 +41198,7 @@ var NuevoCursoPage = function NuevoCursoPage() {
   }), " ", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
     type: "submit",
     value: "Nuevo Curso"
-  })), /*#__PURE__*/React.createElement("link", {
+  })), /*#__PURE__*/React.createElement(Link, {
     to: "/"
   }, "Volver"));
 };
